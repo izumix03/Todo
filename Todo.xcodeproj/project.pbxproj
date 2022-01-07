@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		1A65C0B8CB06FDF947EA5B94 /* TodoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A65C198E2E138E5B1B03478 /* TodoApp.swift */; };
 		1A65C11052E6F16BCA5B4184 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A65C74B0A4A20F069D09AEF /* ContentView.swift */; };
+		1A65C1B13993A972C080AD9F /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A65C877DA03101374742E81 /* Color+Extension.swift */; };
 		1A65C24D00E24341E27C83C3 /* TodoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A65C11A98D35E4AFB40C370 /* TodoUITestsLaunchTests.swift */; };
+		1A65C3EFE4DBD5C8ECF4934A /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A65C09E807367F518BDBCDC /* UserView.swift */; };
 		1A65C5D682340112DE88B7E8 /* TodoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A65C07FF74EC8F06C9BE5C7 /* TodoTests.swift */; };
 		1A65C662B3293F2873A79807 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A65C79BE519772B1E7D6991 /* CheckBox.swift */; };
 		1A65C711D4E609F018F1CC74 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A65CFD3B635DFD3717E7CA7 /* Preview Assets.xcassets */; };
@@ -39,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		1A65C07FF74EC8F06C9BE5C7 /* TodoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTests.swift; sourceTree = "<group>"; };
+		1A65C09E807367F518BDBCDC /* UserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		1A65C11A98D35E4AFB40C370 /* TodoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1A65C198E2E138E5B1B03478 /* TodoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoApp.swift; sourceTree = "<group>"; };
 		1A65C27C210FA687A42B8A95 /* TodoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoUITests.swift; sourceTree = "<group>"; };
@@ -46,6 +49,7 @@
 		1A65C52DC56D0C9873294C9E /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		1A65C74B0A4A20F069D09AEF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1A65C79BE519772B1E7D6991 /* CheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
+		1A65C877DA03101374742E81 /* Color+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		1A65C87DCC7D8E31D18DA8F9 /* Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A65CA8DC0DA69B8211FEFDE /* TodoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A65CB6147CDD67CF5456541 /* TodoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,8 +94,18 @@
 				1A65C9635DB9E123566D8D0C /* Todo.xcdatamodeld */,
 				1A65CD9CB09C86367FC1FF67 /* CategoryImage.swift */,
 				1A65C79BE519772B1E7D6991 /* CheckBox.swift */,
+				1A65C564CAA0B33072E1A944 /* Extension */,
+				1A65C09E807367F518BDBCDC /* UserView.swift */,
 			);
 			path = Todo;
+			sourceTree = "<group>";
+		};
+		1A65C564CAA0B33072E1A944 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				1A65C877DA03101374742E81 /* Color+Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		1A65C66967ACCE8EDBB3428D /* Preview Content */ = {
@@ -260,6 +274,8 @@
 				1A65CBB0D633EA297F56E8BA /* Todo.xcdatamodeld in Sources */,
 				1A65CDF432AC9B816E4EEFB4 /* CategoryImage.swift in Sources */,
 				1A65C662B3293F2873A79807 /* CheckBox.swift in Sources */,
+				1A65C1B13993A972C080AD9F /* Color+Extension.swift in Sources */,
+				1A65C3EFE4DBD5C8ECF4934A /* UserView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
