@@ -11,6 +11,7 @@
 		1A65C11052E6F16BCA5B4184 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A65C74B0A4A20F069D09AEF /* ContentView.swift */; };
 		1A65C24D00E24341E27C83C3 /* TodoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A65C11A98D35E4AFB40C370 /* TodoUITestsLaunchTests.swift */; };
 		1A65C5D682340112DE88B7E8 /* TodoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A65C07FF74EC8F06C9BE5C7 /* TodoTests.swift */; };
+		1A65C662B3293F2873A79807 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A65C79BE519772B1E7D6991 /* CheckBox.swift */; };
 		1A65C711D4E609F018F1CC74 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A65CFD3B635DFD3717E7CA7 /* Preview Assets.xcassets */; };
 		1A65C7CFD30F792CC4683D96 /* TodoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A65C27C210FA687A42B8A95 /* TodoUITests.swift */; };
 		1A65C99AADCD2501C176E373 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A65CED2101EFB10CD09CB8B /* Assets.xcassets */; };
@@ -44,6 +45,7 @@
 		1A65C5271BDA87814DD5F98E /* Todo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Todo.xcdatamodel; sourceTree = "<group>"; };
 		1A65C52DC56D0C9873294C9E /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		1A65C74B0A4A20F069D09AEF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1A65C79BE519772B1E7D6991 /* CheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		1A65C87DCC7D8E31D18DA8F9 /* Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A65CA8DC0DA69B8211FEFDE /* TodoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A65CB6147CDD67CF5456541 /* TodoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +89,7 @@
 				1A65C52DC56D0C9873294C9E /* Persistence.swift */,
 				1A65C9635DB9E123566D8D0C /* Todo.xcdatamodeld */,
 				1A65CD9CB09C86367FC1FF67 /* CategoryImage.swift */,
+				1A65C79BE519772B1E7D6991 /* CheckBox.swift */,
 			);
 			path = Todo;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 				1A65CC769769F236535F0BEB /* Persistence.swift in Sources */,
 				1A65CBB0D633EA297F56E8BA /* Todo.xcdatamodeld in Sources */,
 				1A65CDF432AC9B816E4EEFB4 /* CategoryImage.swift in Sources */,
+				1A65C662B3293F2873A79807 /* CheckBox.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
