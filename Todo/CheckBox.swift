@@ -4,10 +4,10 @@
 
 import SwiftUI
 
-struct CheckBox<Label>: View where Label: View {
+struct CheckBox<Label: View>: View {
 //    @State var checked = false
     @Binding var checked: Bool
-    private var label: () -> Label
+    private let label: () -> Label
 
     public init(checked: Binding<Bool>,
                 @ViewBuilder label: @escaping () -> Label) {
