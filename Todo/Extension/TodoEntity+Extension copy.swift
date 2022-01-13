@@ -6,7 +6,27 @@ import SwiftUI
 import CoreData
 
 extension TodoEntity {
-  enum Category {
+  static func create(in managedObjectContext: NSManagedObjectContext,
+                     category: Category,
+                     task: String,
+                     time: Date? = Date()){
+    let todo = self.init(context: managedObjectContext)
+    print(task)
+    todo.time = time
+    todo.category = category.rawValue
+    todo.task = task
+    todo.state = State.todo.rawValue
+    todo.id = UUID().uuidString
+
+    do {
+      try managedObjectContext.save()
+    } catch {
+      let nserror = error as NSError
+      fatalError("unresolved error \(nserror), \(nserror.userInfo)")
+    }
+  }
+
+  enum Category: Int16 {
     case ImpUrg_1st
     case ImpNUrg_2nd
     case NImpUrg_3rd

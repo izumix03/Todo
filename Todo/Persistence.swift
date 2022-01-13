@@ -11,52 +11,61 @@ import CoreData
 struct PersistenceController {
   static let shared = PersistenceController()
 
-//  static var preview: PersistenceController = {
-//    let result = PersistenceController(inMemory: true)
-//    let viewContext = result.container.viewContext
-//    for _ in 0..<10 {
-//      let newItem = Item(context: viewContext)
-//      newItem.timestamp = Date()
-//    }
-//    do {
-//      try viewContext.save()
-//    } catch {
-//      // Replace this implementation with code to handle the error appropriately.
-//      // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-//      let nsError = error as NSError
-//      fatalError(
-//        "Unresolved error \(nsError), \(nsError.userInfo)")
-//    }
-//    return result
-//  }()
-//
-//  let container: NSPersistentContainer
-//
-//  init(inMemory: Bool = false) {
-//    container = NSPersistentContainer(name: "Todo")
-//    if inMemory {
-//      container.persistentStoreDescriptions.first!.url =
-//        URL(fileURLWithPath: "/dev/null")
-//    }
-//    container.viewContext
-//      .automaticallyMergesChangesFromParent = true
-//    container.loadPersistentStores(completionHandler: {
-//      (storeDescription, error) in
-//      if let error = error as NSError? {
-//        // Replace this implementation with code to handle the error appropriately.
-//        // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-//
-//        /*
-//                Typical reasons for an error here include:
-//                * The parent directory does not exist, cannot be created, or disallows writing.
-//                * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-//                * The device is out of space.
-//                * The store could not be migrated to the current model version.
-//                Check the error message to determine what the actual problem was.
-//                */
-//        fatalError(
-//          "Unresolved error \(error), \(error.userInfo)")
-//      }
-//    })
-//  }
+  static var preview: PersistenceController = {
+    let result = PersistenceController(inMemory: true)
+    let viewContext = result.container.viewContext
+    for i in 0..<10 {
+      if (i % 4 == 0) {
+        TodoEntity.create(
+            in: viewContext,
+            category: .ImpUrg_1st, task: "炎上プロジェクト"
+        )
+      }
+      else if (i % 3 == 0) {
+        TodoEntity.create(
+            in: viewContext,
+            category: .NImpUrg_3rd, task: "良いプロジェクト"
+        )
+      }
+      else if (i % 2 == 0) {
+        TodoEntity.create(
+            in: viewContext,
+            category: .ImpNUrg_2nd, task: "まあまあプロジェクト"
+        )
+      }
+      else {
+        TodoEntity.create(
+            in: viewContext,
+            category: .NImpNUrg_4th, task: "普通プロジェクト"
+        )
+      }
+    }
+    do {
+      try viewContext.save()
+    } catch {
+      let nsError = error as NSError
+      fatalError(
+        "Unresolved error \(nsError), \(nsError.userInfo)")
+    }
+    return result
+  }()
+
+  let container: NSPersistentContainer
+
+  init(inMemory: Bool = false) {
+    container = NSPersistentContainer(name: "Todo")
+    if inMemory {
+      container.persistentStoreDescriptions.first!.url =
+        URL(fileURLWithPath: "/dev/null")
+    }
+    container.viewContext
+      .automaticallyMergesChangesFromParent = true
+    container.loadPersistentStores(completionHandler: {
+      (storeDescription, error) in
+      if let error = error as NSError? {
+        fatalError(
+          "Unresolved error \(error), \(error.userInfo)")
+      }
+    })
+  }
 }
