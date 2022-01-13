@@ -15,6 +15,7 @@
 		1A65C5D682340112DE88B7E8 /* TodoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A65C07FF74EC8F06C9BE5C7 /* TodoTests.swift */; };
 		1A65C662B3293F2873A79807 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A65C79BE519772B1E7D6991 /* CheckBox.swift */; };
 		1A65C711D4E609F018F1CC74 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A65CFD3B635DFD3717E7CA7 /* Preview Assets.xcassets */; };
+		1A65C79CADCB9B84F672E1DD /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A65C6FB48A39A620AD25438 /* CategoryView.swift */; };
 		1A65C7CFD30F792CC4683D96 /* TodoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A65C27C210FA687A42B8A95 /* TodoUITests.swift */; };
 		1A65C99AADCD2501C176E373 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A65CED2101EFB10CD09CB8B /* Assets.xcassets */; };
 		1A65CBB0D633EA297F56E8BA /* Todo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1A65C9635DB9E123566D8D0C /* Todo.xcdatamodeld */; };
@@ -48,6 +49,7 @@
 		1A65C27C210FA687A42B8A95 /* TodoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoUITests.swift; sourceTree = "<group>"; };
 		1A65C5271BDA87814DD5F98E /* Todo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Todo.xcdatamodel; sourceTree = "<group>"; };
 		1A65C52DC56D0C9873294C9E /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		1A65C6FB48A39A620AD25438 /* CategoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		1A65C74B0A4A20F069D09AEF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1A65C79BE519772B1E7D6991 /* CheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		1A65C877DA03101374742E81 /* Color+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				1A65C79BE519772B1E7D6991 /* CheckBox.swift */,
 				1A65C564CAA0B33072E1A944 /* Extension */,
 				1A65C09E807367F518BDBCDC /* UserView.swift */,
+				1A65C6FB48A39A620AD25438 /* CategoryView.swift */,
 			);
 			path = Todo;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				1A65C1B13993A972C080AD9F /* Color+Extension.swift in Sources */,
 				1A65C3EFE4DBD5C8ECF4934A /* UserView.swift in Sources */,
 				1A65CFB013103A9DC2C41BAA /* TodoEntity+Extension copy.swift in Sources */,
+				1A65C79CADCB9B84F672E1DD /* CategoryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
