@@ -7,14 +7,14 @@ struct TodoDetailRow: View {
   var body: some View {
     HStack {
       categoryImage
-      checkbox.foregroundColor(self.todo.done() ? .secondary : .primary)
+      checkbox.foregroundColor(todo.done() ? .secondary : .primary)
     }.gesture(
       DragGesture().onChanged { value in
         let distance = value.predictedEndTranslation.width
         if distance > 200 {
-          self.todo.complete()
+          todo.complete()
         } else if distance < -200 {
-          self.todo.complete(false)
+          todo.complete(false)
         }
       })
   }
@@ -29,17 +29,17 @@ struct TodoDetailRow: View {
     CheckBox(
       checked: Binding(
         get: {
-          self.todo.done()
+          todo.done()
         },
         set: {
-          self.todo.complete($0)
+          todo.complete($0)
         })
     ) {
-      if self.todo.done() {
-        Text(self.todo.task ?? "no title")
+      if todo.done() {
+        Text(todo.task ?? "no title")
           .strikethrough()
       } else {
-        Text(self.todo.task ?? "no title")
+        Text(todo.task ?? "no title")
       }
     }
   }
