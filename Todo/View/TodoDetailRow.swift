@@ -35,12 +35,9 @@ struct TodoDetailRow: View {
           todo.complete($0)
         })
     ) {
-      if todo.done() {
-        Text(todo.task ?? "no title")
-          .strikethrough()
-      } else {
-        Text(todo.task ?? "no title")
-      }
+      todo.done()
+        ? Text(todo.task ?? "no title").strikethrough()
+        : Text(todo.task ?? "no title")
     }
   }
 }
