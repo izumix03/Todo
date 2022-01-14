@@ -39,9 +39,13 @@ extension TodoEntity {
     self.state == TodoEntity.State.done.rawValue
   }
 
-  func complete() {
-    if (self.state == TodoEntity.State.todo.rawValue) {
-      self.state = TodoEntity.State.done.rawValue
+  func complete(_ ok: Bool = true) {
+    if ok {
+      if (self.state == TodoEntity.State.todo.rawValue) {
+        self.state = TodoEntity.State.done.rawValue
+      }
+    } else {
+      back()
     }
   }
 
@@ -56,6 +60,10 @@ extension TodoEntity {
     case ImpNUrg_2nd
     case NImpUrg_3rd
     case NImpNUrg_4th
+
+    func match(_ category: Int16) -> Bool {
+      self.rawValue == category
+    }
 
     func toString() -> String {
       switch self {

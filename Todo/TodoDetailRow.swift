@@ -15,9 +15,7 @@ struct TodoDetailRow: View {
             self.todo.done()
           },
           set: {
-            self.todo.state =
-              $0
-              ? TodoEntity.State.done.rawValue : TodoEntity.State.todo.rawValue
+            self.todo.complete($0)
           })
       ) {
         if self.todo.done() {
@@ -26,9 +24,7 @@ struct TodoDetailRow: View {
         } else {
           Text(self.todo.task ?? "no title")
         }
-      }.foregroundColor(
-        self.todo.state == TodoEntity.State.done.rawValue
-          ? .secondary : .primary)
+      }.foregroundColor(self.todo.done() ? .secondary : .primary)
     }.gesture(
       DragGesture().onChanged { value in
         let distance = value.predictedEndTranslation.width

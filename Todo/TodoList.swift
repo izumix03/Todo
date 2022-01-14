@@ -17,7 +17,7 @@ struct TodoList: View {
     VStack {
       List {
         ForEach(todoList) { todo in
-          if todo.category == self.category.rawValue {
+          if self.category.match(todo.category) {
             TodoDetailRow(todo: todo, hideIcon: true)
           }
         }
