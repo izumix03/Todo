@@ -16,14 +16,17 @@ struct TodoList: View {
   var body: some View {
     VStack {
       List {
-        ForEach(todoList) { todo in
-          if self.category.match(todo.category) {
-            TodoDetailRow(todo: todo, hideIcon: true)
-          }
-        }
+        todoListView
       }
-      QuickNewTask(category: category)
-        .padding()
+      QuickNewTask(category: category).padding()
+    }
+  }
+
+  private var todoListView: some View {
+    ForEach(todoList) { todo in
+      if category.match(todo.category) {
+        TodoDetailRow(todo: todo, hideIcon: true)
+      }
     }
   }
 }

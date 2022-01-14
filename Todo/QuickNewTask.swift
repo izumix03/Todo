@@ -8,26 +8,38 @@ struct QuickNewTask: View {
   let category: TodoEntity.Category
   @State private(set) var newTask = ""
 
+  var body: some View {
+    HStack {
+      titleInput
+      addButton
+      cancelButton
+    }
+  }
+
+  private var titleInput: some View {
+    TextField("新しいタスク", text: $newTask, onCommit: addNewTask)
+      .textFieldStyle(RoundedBorderTextFieldStyle())
+  }
+
+  private var addButton: some View {
+    Button(action: addNewTask) {
+      Text("追加")
+    }
+  }
+
+  private var cancelButton: some View {
+    Button(action: cancelTask) {
+      Text("キャンセル")
+        .foregroundColor(.red)
+    }
+  }
+
   private func addNewTask() {
     self.newTask = ""
   }
 
   private func cancelTask() {
     self.newTask = ""
-  }
-
-  var body: some View {
-    HStack {
-      TextField("新しいタスク", text: $newTask, onCommit: addNewTask)
-        .textFieldStyle(RoundedBorderTextFieldStyle())
-      Button(action: addNewTask) {
-        Text("追加")
-      }
-      Button(action: cancelTask) {
-        Text("キャンセル")
-          .foregroundColor(.red)
-      }
-    }
   }
 }
 

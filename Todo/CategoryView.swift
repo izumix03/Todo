@@ -7,21 +7,37 @@ import SwiftUI
 struct CategoryView: View {
   let category: TodoEntity.Category
   @State var numberOfTasks = 0
+
   var body: some View {
     VStack(alignment: .leading) {
-      Image(systemName: category.image())
-        .font(.largeTitle)
-      Text(category.toString())
-      Text("・\(numberOfTasks)タスク")
-      Button(action: {}) {
-        Image(systemName: "plus")
-      }
+      categoryImage.font(.largeTitle)
+      categoryTitle
+      taskCountText
+      newTaskButton
       Spacer()
     }.padding()
       .frame(maxWidth: .infinity, minHeight: 150)
       .foregroundColor(.white)
       .background(category.color())
       .cornerRadius(20)
+  }
+
+  private var categoryImage: some View {
+    Image(systemName: category.image())
+  }
+
+  private var categoryTitle: some View {
+    Text(category.toString())
+  }
+
+  private var taskCountText: some View {
+    Text("・\(numberOfTasks)タスク")
+  }
+
+  private var newTaskButton: some View {
+    Button(action: {}) {
+      Image(systemName: "plus")
+    }
   }
 }
 

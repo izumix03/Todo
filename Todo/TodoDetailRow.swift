@@ -6,25 +6,8 @@ struct TodoDetailRow: View {
 
   var body: some View {
     HStack {
-      if !hideIcon {
-        CategoryImage(TodoEntity.Category(rawValue: todo.category))
-      }
-      CheckBox(
-        checked: Binding(
-          get: {
-            self.todo.done()
-          },
-          set: {
-            self.todo.complete($0)
-          })
-      ) {
-        if self.todo.done() {
-          Text(self.todo.task ?? "no title")
-            .strikethrough()
-        } else {
-          Text(self.todo.task ?? "no title")
-        }
-      }.foregroundColor(self.todo.done() ? .secondary : .primary)
+      categoryImage
+      checkbox.foregroundColor(self.todo.done() ? .secondary : .primary)
     }.gesture(
       DragGesture().onChanged { value in
         let distance = value.predictedEndTranslation.width
@@ -34,6 +17,31 @@ struct TodoDetailRow: View {
           self.todo.complete(false)
         }
       })
+  }
+
+  private var categoryImage: some View {
+    hideIcon
+      ? AnyView(EmptyView())
+      : AnyView(CategoryImage(TodoEntity.Category(rawValue: todo.category)))
+  }
+
+  private var checkbox: some View {
+    CheckBox(
+      checked: Binding(
+        get: {
+          self.todo.done()
+        },
+        set: {
+          self.todo.complete($0)
+        })
+    ) {
+      if self.todo.done() {
+        Text(self.todo.task ?? "no title")
+          .strikethrough()
+      } else {
+        Text(self.todo.task ?? "no title")
+      }
+    }
   }
 }
 

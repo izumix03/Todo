@@ -5,7 +5,6 @@
 import SwiftUI
 
 struct CheckBox<Label: View>: View {
-  //    @State var checked = false
   @Binding var checked: Bool
   private let label: () -> Label
 
@@ -20,12 +19,16 @@ struct CheckBox<Label: View>: View {
 
   var body: some View {
     HStack {
-      Image(systemName: checked ? "checkmark.circle" : "circle")
-        .onTapGesture {
-          self.checked.toggle()
-        }
+      tappableImage
       label()
     }
+  }
+
+  private var tappableImage: some View {
+    Image(systemName: checked ? "checkmark.circle" : "circle")
+      .onTapGesture {
+        self.checked.toggle()
+      }
   }
 }
 
