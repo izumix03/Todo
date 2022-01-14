@@ -45,13 +45,9 @@ extension TodoEntity {
         self.state = TodoEntity.State.done.rawValue
       }
     } else {
-      back()
-    }
-  }
-
-  func back() {
-    if (self.state == TodoEntity.State.done.rawValue) {
-      self.state = TodoEntity.State.todo.rawValue
+      if (self.state == TodoEntity.State.done.rawValue) {
+        self.state = TodoEntity.State.todo.rawValue
+      }
     }
   }
 

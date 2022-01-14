@@ -31,7 +31,7 @@ struct TodoDetailRow: View {
         if distance > 200 {
           self.todo.complete()
         } else if distance < -200 {
-          self.todo.back()
+          self.todo.complete(false)
         }
       })
   }
