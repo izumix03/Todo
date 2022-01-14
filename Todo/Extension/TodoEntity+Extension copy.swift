@@ -26,7 +26,16 @@ extension TodoEntity {
     }
   }
 
-  enum Category: Int16 {
+  static var previewData: TodoEntity {
+    let context = PersistenceController.preview.container.viewContext
+    let newTodo = TodoEntity(context: context)
+    newTodo.task = "将来の人間関係づくり"
+    newTodo.state = TodoEntity.State.allCases.randomElement()!.rawValue
+    newTodo.category = TodoEntity.Category.allCases.randomElement()!.rawValue
+    return newTodo
+  }
+
+  enum Category: Int16, CaseIterable {
     case ImpUrg_1st
     case ImpNUrg_2nd
     case NImpUrg_3rd
@@ -72,7 +81,7 @@ extension TodoEntity {
     }
   }
 
-  enum State: Int16 {
+  enum State: Int16, CaseIterable {
     case todo
     case done
   }

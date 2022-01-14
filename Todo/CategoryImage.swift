@@ -5,21 +5,27 @@
 import SwiftUI
 
 struct CategoryImage: View {
+  let category: TodoEntity.Category
+
+  init(_ category: TodoEntity.Category?) {
+    self.category = category ?? .ImpUrg_1st
+  }
+
   var body: some View {
-    Image(systemName: "star.leadinghalf.filled")
+    Image(systemName: category.image())
       .resizable()
       .scaledToFit()
-      .foregroundColor(.yellow)
-      .padding(10)
-      .frame(width: 200, height: 200)
-      .background(Color(.cyan))
-      .cornerRadius(30)
+      .foregroundColor(.white)
+      .padding(2)
+      .frame(width: 30, height: 30)
+      .background(category.color())
+      .cornerRadius(6)
   }
 }
 
 class CategoryImage_Previews: PreviewProvider {
   static var previews: some View {
-    CategoryImage()
+    CategoryImage(TodoEntity.Category.ImpUrg_1st)
   }
 
   #if DEBUG
@@ -27,7 +33,7 @@ class CategoryImage_Previews: PreviewProvider {
       (UIApplication.shared.connectedScenes.first
         as? UIWindowScene)?.windows.first?
         .rootViewController =
-        UIHostingController(rootView: CategoryImage())
+        UIHostingController(rootView: CategoryImage(TodoEntity.Category.ImpUrg_1st))
     }
   #endif
 }
