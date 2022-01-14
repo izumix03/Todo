@@ -2,14 +2,17 @@ import SwiftUI
 
 struct TodoDetailRow: View {
   @ObservedObject var todo: TodoEntity
+  var hideIcon = false
 
   var body: some View {
     HStack {
-      CategoryImage(TodoEntity.Category(rawValue: todo.category))
+      if !hideIcon {
+        CategoryImage(TodoEntity.Category(rawValue: todo.category))
+      }
       CheckBox(
         checked: Binding(
           get: {
-            self.todo.state == TodoEntity.State.done.rawValue
+            self.todo.done()
           },
           set: {
             self.todo.state =
@@ -17,7 +20,7 @@ struct TodoDetailRow: View {
               ? TodoEntity.State.done.rawValue : TodoEntity.State.todo.rawValue
           })
       ) {
-        if self.todo.state == TodoEntity.State.done.rawValue {
+        if self.todo.done() {
           Text(self.todo.task ?? "no title")
             .strikethrough()
         } else {
@@ -26,7 +29,15 @@ struct TodoDetailRow: View {
       }.foregroundColor(
         self.todo.state == TodoEntity.State.done.rawValue
           ? .secondary : .primary)
-    }
+    }.gesture(
+      DragGesture().onChanged { value in
+        let distance = value.predictedEndTranslation.width
+        if distance > 200 {
+          self.todo.complete()
+        } else if distance < -200 {
+          self.todo.back()
+        }
+      })
   }
 }
 
@@ -41,7 +52,10 @@ class TodoDetailRow_Previews: PreviewProvider {
         .windows.first?.rootViewController =
         UIHostingController(
           rootView:
-            TodoDetailRow(todo: TodoEntity.previewData)
+            VStack {
+              TodoDetailRow(todo: TodoEntity.previewData)
+              TodoDetailRow(todo: TodoEntity.previewData, hideIcon: true)
+            }
         )
     }
   #endif

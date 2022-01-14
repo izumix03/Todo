@@ -35,6 +35,22 @@ extension TodoEntity {
     return newTodo
   }
 
+  func done() -> Bool {
+    self.state == TodoEntity.State.done.rawValue
+  }
+
+  func complete() {
+    if (self.state == TodoEntity.State.todo.rawValue) {
+      self.state = TodoEntity.State.done.rawValue
+    }
+  }
+
+  func back() {
+    if (self.state == TodoEntity.State.done.rawValue) {
+      self.state = TodoEntity.State.todo.rawValue
+    }
+  }
+
   enum Category: Int16, CaseIterable {
     case ImpUrg_1st
     case ImpNUrg_2nd
