@@ -19,16 +19,13 @@ struct CheckBox<Label: View>: View {
 
   var body: some View {
     HStack {
-      tappableImage
+      checkboxImage.onTapGesture { self.checked.toggle() }
       label()
     }
   }
 
-  private var tappableImage: some View {
+  private var checkboxImage: some View {
     Image(systemName: checked ? "checkmark.circle" : "circle")
-      .onTapGesture {
-        self.checked.toggle()
-      }
   }
 }
 

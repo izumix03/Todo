@@ -5,7 +5,7 @@
 import SwiftUI
 
 struct UserView: View {
-  let image: Image
+  let profileImage: Image
   let userName: String
 
   var body: some View {
@@ -19,7 +19,7 @@ struct UserView: View {
           .font(.title)
       }
       Spacer()
-      image
+      profileImage
         .resizable()
         .scaledToFit()
         .frame(width: 60)
@@ -32,7 +32,7 @@ struct UserView: View {
 
 class UserView_Previews: PreviewProvider {
   static var previews: some View {
-    UserView(image: Image("mix"), userName: "Takahiro Izumikawa")
+    UserView(profileImage: Image("mix"), userName: "Takahiro Izumikawa")
   }
 
   #if DEBUG
@@ -43,7 +43,7 @@ class UserView_Previews: PreviewProvider {
         UIHostingController(
           rootView:
             VStack {
-              UserView(image: Image("mix"), userName: "Takahiro Izumikawa")
+              UserView(profileImage: Image("mix"), userName: "Takahiro Izumikawa")
             })
     }
   #endif

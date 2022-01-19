@@ -7,6 +7,7 @@ import SwiftUI
 struct QuickNewTask: View {
   let category: TodoEntity.Category
   @State private(set) var newTask = ""
+  @Environment(\.managedObjectContext) var viewContext
 
   var body: some View {
     HStack {
@@ -29,12 +30,12 @@ struct QuickNewTask: View {
 
   private var cancelButton: some View {
     Button(action: cancelTask) {
-      Text("キャンセル")
-        .foregroundColor(.red)
+      Text("キャンセル").foregroundColor(.red)
     }
   }
 
   private func addNewTask() {
+    TodoEntity.create(in: viewContext, category: category, task: newTask)
     self.newTask = ""
   }
 
@@ -55,6 +56,9 @@ class QuickNewTask_Previews: PreviewProvider {
         UIHostingController(
           rootView:
             QuickNewTask(category: .NImpUrg_3rd)
+            .environment(
+              \.managedObjectContext,
+              PersistenceController.preview.container.viewContext)
         )
     }
   #endif
