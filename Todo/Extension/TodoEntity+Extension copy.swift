@@ -6,20 +6,26 @@ import SwiftUI
 import CoreData
 
 extension TodoEntity {
-  static func create(in managedObjectContext: NSManagedObjectContext,
+  static func new(in context: NSManagedObjectContext,
                      category: Category,
                      task: String,
                      time: Date? = Date()){
-    let todo = self.init(context: managedObjectContext)
+    let todo = self.init(context: context)
     print(task)
     todo.time = time
     todo.category = category.rawValue
     todo.task = task
     todo.state = State.todo.rawValue
     todo.id = UUID().uuidString
+  }
 
+  static func create(in context: NSManagedObjectContext,
+                     category: Category,
+                     task: String,
+                     time: Date? = Date()){
+    new(in: context, category: category, task: task, time: time)
     do {
-      try managedObjectContext.save()
+      try context.save()
     } catch {
       let nserror = error as NSError
       fatalError("unresolved error \(nserror), \(nserror.userInfo)")

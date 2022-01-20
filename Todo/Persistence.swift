@@ -16,25 +16,25 @@ struct PersistenceController {
     let viewContext = result.container.viewContext
     for i in 0..<10 {
       if (i % 4 == 0) {
-        TodoEntity.create(
+        TodoEntity.new(
             in: viewContext,
             category: .ImpUrg_1st, task: "炎上プロジェクト"
         )
       }
       else if (i % 3 == 0) {
-        TodoEntity.create(
+        TodoEntity.new(
             in: viewContext,
             category: .NImpUrg_3rd, task: "良いプロジェクト"
         )
       }
       else if (i % 2 == 0) {
-        TodoEntity.create(
+        TodoEntity.new(
             in: viewContext,
             category: .ImpNUrg_2nd, task: "まあまあプロジェクト"
         )
       }
       else {
-        TodoEntity.create(
+        TodoEntity.new(
             in: viewContext,
             category: .NImpNUrg_4th, task: "普通プロジェクト"
         )
@@ -43,9 +43,8 @@ struct PersistenceController {
     do {
       try viewContext.save()
     } catch {
-      let nsError = error as NSError
-      fatalError(
-        "Unresolved error \(nsError), \(nsError.userInfo)")
+      let nserror = error as NSError
+      fatalError("unresolved error \(nserror), \(nserror.userInfo)")
     }
     return result
   }()

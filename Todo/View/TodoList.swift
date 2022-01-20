@@ -45,7 +45,7 @@ class TodoList_Previews: PreviewProvider {
         .windows.first?.rootViewController =
         UIHostingController(
           rootView:
-            TodoList(category: .NImpUrg_3rd)
+            TodoList(category: .ImpUrg_1st)
             .environment(
               \.managedObjectContext,
               PersistenceController.preview.container.viewContext)

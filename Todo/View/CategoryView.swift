@@ -7,8 +7,10 @@ import SwiftUI
 struct CategoryView: View {
   let category: TodoEntity.Category
   @State var numberOfTasks = 0
-  @State(initialValue: false) var showList
-  @Environment(\.managedObjectContext) var viewContext
+
+  @State(initialValue: false) private var showList
+  @State(initialValue: false) private var addNewTask
+  @Environment(\.managedObjectContext) private var viewContext
 
   var body: some View {
     VStack(alignment: .leading) {
@@ -23,7 +25,6 @@ struct CategoryView: View {
       Spacer()
     }.padding()
       .frame(maxWidth: .infinity, minHeight: 150)
-      .foregroundColor(.white)
       .background(category.color())
       .cornerRadius(20)
       .onTapGesture {
@@ -44,8 +45,12 @@ struct CategoryView: View {
   }
 
   private var newTaskButton: some View {
-    Button(action: {}) {
+    Button(action: {
+      addNewTask = true
+    }) {
       Image(systemName: "plus")
+    }.sheet(isPresented: $addNewTask) {
+      NewTask(category: category.rawValue)
     }
   }
 }
@@ -75,8 +80,8 @@ class CategoryView_Previews: PreviewProvider {
                 category: .NImpNUrg_4th,
                 numberOfTasks: 100)
             }.environment(
-                \.managedObjectContext,
-                PersistenceController.preview.container.viewContext)
+              \.managedObjectContext,
+              PersistenceController.preview.container.viewContext)
         )
     }
   #endif
