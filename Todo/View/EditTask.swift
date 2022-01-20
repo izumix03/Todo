@@ -4,6 +4,7 @@ struct EditTask: View {
   @ObservedObject var todo: TodoEntity
 
   @State(initialValue: false) var isDateShown
+  @State(initialValue: false) private var showingSheet
 
   @Environment(\.managedObjectContext) private var viewContext
   @Environment(\.presentationMode) private var mode
@@ -26,7 +27,7 @@ struct EditTask: View {
 
       Section(header: Text("操作")) {
         Button(action: {
-          // TODO
+          showingSheet = true
         }) {
           HStack(alignment: .center) {
             Image(systemName: "minus.circle.fill")
@@ -36,7 +37,20 @@ struct EditTask: View {
           .navigationBarItems(
             trailing: Button(action: save) {
               Text("閉じる")
-            })
+            }
+          ).actionSheet(isPresented: $showingSheet) {
+            ActionSheet(
+              title: Text("タスクの削除"),
+              message: Text("このタスクを削除します。よろしいですか？"),
+              buttons: [
+                .destructive(Text("削除")) {
+                  delete()
+                  mode.wrappedValue.dismiss()
+                },
+                .cancel(Text("キャンセル")),
+              ]
+            )
+          }
       }
     }
   }
@@ -89,11 +103,11 @@ struct EditTask: View {
 }
 
 class EditTask_Previews: PreviewProvider {
-  static var vc = PersistenceController.preview.container.viewContext
-  static var todo = TodoEntity(context: vc)
+  static let vc = PersistenceController.preview.container.viewContext
+  static let todo = TodoEntity(context: vc)
 
   static var previews: some View {
-    EditTask(todo: todo)
+    EditTask(todo: todo).environment(\.managedObjectContext, vc)
   }
 
   #if DEBUG
@@ -104,7 +118,7 @@ class EditTask_Previews: PreviewProvider {
           rootView:
             NavigationView {
               EditTask(todo: todo)
-            }
+            }.environment(\.managedObjectContext, vc)
         )
     }
   #endif

@@ -39,8 +39,11 @@ struct ContentView: View {
           CategoryView(category: .NImpNUrg_4th)
         }
       }.padding()
+
+      TaskToday()
     }.background(Color.tBackground)
       .edgesIgnoringSafeArea(.bottom)
+
     //    NavigationView {
     //      List {
     //        ForEach(items) { item in
@@ -122,7 +125,9 @@ class ContentView_Previews: PreviewProvider {
         as? UIWindowScene)?.windows.first?
         .rootViewController =
         UIHostingController(
-          rootView: ContentView()
+          rootView: ContentView().environment(
+            \.managedObjectContext,
+            PersistenceController.preview.container.viewContext)
         )
     }
   #endif
