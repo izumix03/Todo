@@ -13,7 +13,6 @@ struct QuickNewTask: View {
     HStack {
       titleInput
       addButton
-      cancelButton
     }
   }
 
@@ -25,12 +24,6 @@ struct QuickNewTask: View {
   private var addButton: some View {
     Button(action: addNewTask) {
       Text("追加")
-    }
-  }
-
-  private var cancelButton: some View {
-    Button(action: cancelTask) {
-      Text("キャンセル").foregroundColor(.red)
     }
   }
 

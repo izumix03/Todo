@@ -14,8 +14,6 @@ struct TodoList: View {
   let category: TodoEntity.Category
   @Environment(\.managedObjectContext) private var viewContext
 
-  @ObservedObject(initialValue: KeyboardObserver()) private var keyboard
-
   var body: some View {
     NavigationView {
       VStack {
@@ -24,15 +22,15 @@ struct TodoList: View {
         }
         QuickNewTask(category: category).padding()
       }.navigationTitle(category.toString())
-        .navigationBarItems(trailing: EditButton())
+        .navigationBarItems(
+          trailing: todoList.isEmpty
+            ? AnyView(EmptyView()) : AnyView(EditButton()))
     }.navigationViewStyle(StackNavigationViewStyle())
       .onAppear {
-        keyboard.startObserve()
         UIApplication.shared.closeKeyboard()
       }.onDisappear {
-      keyboard.stopObserve()
-      UIApplication.shared.closeKeyboard()
-    }.padding(.bottom, keyboard.height)
+        UIApplication.shared.closeKeyboard()
+      }
   }
 
   private var todoListView: some View {

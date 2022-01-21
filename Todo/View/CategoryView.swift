@@ -23,13 +23,16 @@ struct CategoryView: View {
       endPoint: .bottom)
 
     return VStack(alignment: .leading) {
-      categoryImage.font(.largeTitle)
-        .sheet(isPresented: $showList, onDismiss: updateCnt) {
-          TodoList(category: category)
-        }
+      HStack {
+        categoryImage.font(.largeTitle)
+          .sheet(isPresented: $showList, onDismiss: updateCnt) {
+            TodoList(category: category)
+          }
+        Spacer()
+        newTaskButton
+      }
       categoryTitle.foregroundColor(.white)
       taskCountText.foregroundColor(.white)
-      newTaskButton.foregroundColor(.white)
       Spacer()
     }.padding()
       .frame(maxWidth: .infinity, minHeight: 150)
@@ -62,7 +65,12 @@ struct CategoryView: View {
     Button(action: {
       addNewTask = true
     }) {
-      Image(systemName: "plus")
+      Text("追加")
+        .font(.caption2)
+        .padding()
+        .background(.white)
+        .cornerRadius(10)
+        .shadow(color: .gray, radius: 3, x: 5, y: 5)
     }.sheet(isPresented: $addNewTask, onDismiss: updateCnt) {
       NewTask(category: category.rawValue)
     }
@@ -81,19 +89,23 @@ class CategoryView_Previews: PreviewProvider {
         UIHostingController(
           rootView:
             VStack {
-              CategoryView(
-                category: .ImpUrg_1st,
-                numberOfTasks: 100)
-              CategoryView(
-                category: .ImpNUrg_2nd,
-                numberOfTasks: 100)
-              CategoryView(
-                category: .NImpUrg_3rd,
-                numberOfTasks: 100)
-              CategoryView(
-                category: .NImpNUrg_4th,
-                numberOfTasks: 100)
-            }.environment(
+              HStack {
+                CategoryView(
+                  category: .ImpUrg_1st,
+                  numberOfTasks: 100)
+                CategoryView(
+                  category: .ImpNUrg_2nd,
+                  numberOfTasks: 100)
+              }
+              HStack {
+                CategoryView(
+                  category: .NImpUrg_3rd,
+                  numberOfTasks: 100)
+                CategoryView(
+                  category: .NImpNUrg_4th,
+                  numberOfTasks: 100)
+              }
+            }.frame(height: 400).environment(
               \.managedObjectContext,
               PersistenceController.contextWithSample)
         )
