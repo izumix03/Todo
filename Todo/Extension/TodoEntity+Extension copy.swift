@@ -32,8 +32,19 @@ extension TodoEntity {
     }
   }
 
-  static var previewData: TodoEntity {
-    let context = PersistenceController.preview.container.viewContext
+  static func count(in context: NSManagedObjectContext, category: Category) -> Int{
+    let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TodoEntity")
+    request.predicate = NSPredicate(format: "category == \(category.rawValue)")
+
+    do {
+      return try context.count(for: request)
+    } catch {
+      print("Error: \(error.localizedDescription)")
+      return 0
+    }
+  }
+
+  static func buildSample(_ context: NSManagedObjectContext) ->  TodoEntity {
     let newTodo = TodoEntity(context: context)
     newTodo.task = "将来の人間関係づくり"
     newTodo.state = TodoEntity.State.allCases.randomElement()!.rawValue

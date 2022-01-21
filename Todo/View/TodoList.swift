@@ -12,22 +12,45 @@ struct TodoList: View {
     ], animation: .default)
   var todoList: FetchedResults<TodoEntity>
   let category: TodoEntity.Category
+  @Environment(\.managedObjectContext) private var viewContext
+
+  @ObservedObject(initialValue: KeyboardObserver()) private var keyboard
 
   var body: some View {
-    VStack {
-      List {
-        todoListView
-      }
-      QuickNewTask(category: category).padding()
-    }
+    NavigationView {
+      VStack {
+        List {
+          todoListView
+        }
+        QuickNewTask(category: category).padding()
+      }.navigationTitle(category.toString())
+        .navigationBarItems(trailing: EditButton())
+    }.navigationViewStyle(StackNavigationViewStyle())
+      .onAppear {
+        keyboard.startObserve()
+        UIApplication.shared.closeKeyboard()
+      }.onDisappear {
+      keyboard.stopObserve()
+      UIApplication.shared.closeKeyboard()
+    }.padding(.bottom, keyboard.height)
   }
 
   private var todoListView: some View {
     ForEach(todoList) { todo in
       if category.match(todo.category) {
-        TodoDetailRow(todo: todo, hideIcon: true)
+        NavigationLink(destination: EditTask(todo: todo)) {
+          TodoDetailRow(todo: todo, hideIcon: true)
+        }
       }
+    }.onDelete(perform: deleteTodo)
+  }
+
+  private func deleteTodo(at offsets: IndexSet) {
+    for index in offsets {
+      let entity = todoList[index]
+      viewContext.delete(entity)
     }
+    try! viewContext.save()
   }
 }
 

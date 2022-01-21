@@ -44,7 +44,9 @@ struct TodoDetailRow: View {
 
 class TodoDetailRow_Previews: PreviewProvider {
   static var previews: some View {
-    TodoDetailRow(todo: TodoEntity.previewData)
+    TodoDetailRow(
+      todo: TodoEntity.buildSample(
+        PersistenceController.preview.container.viewContext))
   }
 
   #if DEBUG
@@ -54,8 +56,13 @@ class TodoDetailRow_Previews: PreviewProvider {
         UIHostingController(
           rootView:
             VStack {
-              TodoDetailRow(todo: TodoEntity.previewData)
-              TodoDetailRow(todo: TodoEntity.previewData, hideIcon: true)
+              TodoDetailRow(
+                todo: TodoEntity.buildSample(
+                  PersistenceController.preview.container.viewContext))
+              TodoDetailRow(
+                todo: TodoEntity.buildSample(
+                  PersistenceController.preview.container.viewContext),
+                hideIcon: true)
             }
         )
     }

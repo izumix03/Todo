@@ -13,23 +13,37 @@ struct CategoryView: View {
   @Environment(\.managedObjectContext) private var viewContext
 
   var body: some View {
-    VStack(alignment: .leading) {
+    let gradiant = Gradient(colors: [
+      category.color(),
+      category.color().opacity(0.0),
+    ])
+    let linear = LinearGradient(
+      gradient: gradiant,
+      startPoint: .top,
+      endPoint: .bottom)
+
+    return VStack(alignment: .leading) {
       categoryImage.font(.largeTitle)
-        .sheet(isPresented: $showList) {
+        .sheet(isPresented: $showList, onDismiss: updateCnt) {
           TodoList(category: category)
-            .environment(\.managedObjectContext, viewContext)
         }
-      categoryTitle
-      taskCountText
-      newTaskButton
+      categoryTitle.foregroundColor(.white)
+      taskCountText.foregroundColor(.white)
+      newTaskButton.foregroundColor(.white)
       Spacer()
     }.padding()
       .frame(maxWidth: .infinity, minHeight: 150)
-      .background(category.color())
+      .background(linear)
       .cornerRadius(20)
       .onTapGesture {
         showList = true
+      }.onAppear {
+        updateCnt()
       }
+  }
+
+  private func updateCnt() {
+    numberOfTasks = TodoEntity.count(in: viewContext, category: category)
   }
 
   private var categoryImage: some View {
@@ -49,7 +63,7 @@ struct CategoryView: View {
       addNewTask = true
     }) {
       Image(systemName: "plus")
-    }.sheet(isPresented: $addNewTask) {
+    }.sheet(isPresented: $addNewTask, onDismiss: updateCnt) {
       NewTask(category: category.rawValue)
     }
   }
@@ -81,7 +95,7 @@ class CategoryView_Previews: PreviewProvider {
                 numberOfTasks: 100)
             }.environment(
               \.managedObjectContext,
-              PersistenceController.preview.container.viewContext)
+              PersistenceController.contextWithSample)
         )
     }
   #endif
